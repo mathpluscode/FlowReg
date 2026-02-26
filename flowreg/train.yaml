@@ -1,0 +1,34 @@
+name: FlowReg
+phase: train
+
+wandb:
+  entity: null
+  project: FlowReg
+
+datasets:
+  train:
+    batch_size: 4
+    num_workers: 4
+    use_shuffle: true
+
+model:
+  in_channels: 1
+  enc_channels: 8
+  dec_channels: 16
+  t_channels: 64
+  ema_momentum: 0.99
+  num_inference_steps: 5
+
+train:
+  n_epoch: 100
+  warmup_epochs: 2
+  eval_freq: 1
+  save_checkpoint_epoch: 50
+  optimizer:
+    type: adam
+    lr: 1.0e-4
+  loss:
+    ncc_win: 9
+    reg_weight: 1.0
+    v_mse_weight: 1.0
+    p_uncond: 0.1

@@ -1,0 +1,47 @@
+name: FSDiffReg
+phase: train
+
+wandb:
+  entity: null
+  project: FlowReg
+
+path:
+  checkpoint: checkpoint
+  resume_state: null
+
+datasets:
+  centered: true
+  train:
+    batch_size: 1
+    num_workers: 4
+    use_shuffle: true
+
+model:
+  which_model_G: ddpm
+  finetune_norm: false
+  unet:
+    in_channel: 3
+    out_channel: 1
+    inner_channel: 8
+    channel_multiplier: [1, 2, 4, 4]
+    attn_res: [10]
+    res_blocks: 1
+    dropout: 0
+  beta_schedule:
+    train:
+      schedule: linear
+      n_timestep: 2000
+      linear_start: 1.0e-6
+      linear_end: 1.0e-2
+  diffusion:
+    image_size: [128, 128, 32]
+    conditional: true
+  loss_lambda: 20
+  gamma: 1
+
+train:
+  n_epoch: 700
+  eval_freq: 10
+  save_checkpoint_epoch: 50
+  optimizer:
+    lr: 2.0e-4

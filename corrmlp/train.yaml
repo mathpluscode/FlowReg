@@ -1,0 +1,33 @@
+name: CorrMLP
+phase: train
+
+wandb:
+  entity: null
+  project: FlowReg
+
+path:
+  checkpoint: checkpoint
+  resume_state: null
+
+datasets:
+  train:
+    batch_size: 1
+    num_workers: 4
+    use_shuffle: true
+
+model:
+  in_channels: 1
+  enc_channels: 8
+  dec_channels: 16
+  use_checkpoint: true
+
+train:
+  n_epoch: 100
+  eval_freq: 1
+  save_checkpoint_epoch: 50
+  optimizer:
+    type: adam
+    lr: 1.0e-4
+  loss:
+    ncc_win: 9
+    reg_weight: 1.0
