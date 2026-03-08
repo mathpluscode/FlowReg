@@ -23,7 +23,7 @@ class Sampler:
 
     def __init__(self, model, num_steps, eta=0.0, alpha=1.0, beta=1.0,
                  recycle=False, no_heun=False, guidance_weight=0.0,
-                 guidance_ncc_win=9, guidance_reg=False):
+                 guidance_ncc_win=7, guidance_reg=False):
         self.model = model
         self.num_steps = num_steps
         self.eta = eta

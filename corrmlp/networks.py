@@ -8,8 +8,9 @@ import torch.nn as nn
 import torch.nn.functional as nnf
 import torch.utils.checkpoint as checkpoint
 from torch.distributions.normal import Normal
+from huggingface_hub import PyTorchModelHubMixin
 
-class CorrMLP(nn.Module):
+class CorrMLP(nn.Module, PyTorchModelHubMixin):
     
     def __init__(self, 
                  in_channels: int = 1, 

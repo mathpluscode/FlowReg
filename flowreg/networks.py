@@ -7,9 +7,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.checkpoint as cp
 from torch.distributions.normal import Normal
+from huggingface_hub import PyTorchModelHubMixin
 
 
-class FlowReg(nn.Module):
+class FlowReg(nn.Module, PyTorchModelHubMixin):
 
     def __init__(self, in_chs=1, enc_chs=8, dec_chs=16, t_chs=64, use_checkpoint=True):
         super().__init__()
